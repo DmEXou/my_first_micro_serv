@@ -4,11 +4,10 @@
 #include <iostream>
 #include <map>
 #include <set>
-//#include <string>
 #include <vector>
 
 #include <curl/curl.h>
-#include <nlohmann/json.hpp>
+#include "include/json.hpp"
 #include "include/my_utf8_to_unicode_converter.h"
 
 namespace json_energy {
