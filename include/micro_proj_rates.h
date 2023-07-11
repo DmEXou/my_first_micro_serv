@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "include/my_utf8_to_unicode_converter.h"
-#include "include/json.hpp"
+#include <nlohmann/json.hpp>
 #include <curl/curl.h>
 
 class Exchange_rates {

@@ -17,11 +17,11 @@ void converter::UTF8_to_unicode::conv_to(const std::string& str) {
     }
     convert_str = wstr;
 }
-
+/*
 std::wstring_view converter::UTF8_to_unicode::get_raw() {
     return convert_str;
 }
-
+*/
 std::wstring converter::UTF8_to_unicode::get_wstr() {
     return convert_str;
 }

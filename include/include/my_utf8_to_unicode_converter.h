@@ -8,7 +8,7 @@ class UTF8_to_unicode {
 public:
 	void conv_to(const std::string& str);
 
-	std::wstring_view get_raw();
+	//std::wstring_view get_raw();
 
 	std::wstring get_wstr();
 

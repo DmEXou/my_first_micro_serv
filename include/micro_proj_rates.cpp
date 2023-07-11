@@ -1,6 +1,6 @@
 ﻿#include "micro_proj_rates.h"
 
-nlohmann::json Exchange_rates::json_exchange_rates(const std::vector<std::string>& id_сurrency) {
+nlohmann::json Exchange_rates::json_exchange_rates(const std::vector<std::string>& id_currency) {
     std::string readBuffer_UTF8;
     readBuffer_UTF8.reserve(82000);
     CURL* curl;
@@ -20,7 +20,7 @@ nlohmann::json Exchange_rates::json_exchange_rates(const std::vector<std::string
     auto it = json_full.find("Valute");
     if (it != json_full.end()) {
         auto arr_exchange_rates = it.value();
-        for (const auto& сurrency : id_сurrency) {
+        for (const auto& сurrency : id_currency) {
             auto& arr_jvaluta = arr_exchange_rates.find(сurrency).value();
 
             result.push_back(arr_jvaluta);
