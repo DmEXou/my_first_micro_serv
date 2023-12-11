@@ -163,7 +163,7 @@ nlohmann::json json_energy::build() {
     }
     nlohmann::json finish_json;
     finish_json["tuva_energo"] = date_name_off_ener;
-    return date_name_off_ener;
+    return finish_json;
 }
 
 std::string json_energy::to_str(const work_date& date) {

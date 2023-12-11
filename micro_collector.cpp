@@ -3,8 +3,8 @@
 
 #include <crow.h>
 
-#include "Include/micro_parser_tuva_energo.h"
-#include "Include/micro_proj_rates.h"
+#include "include/micro_parser_tuva_energo.h"
+#include "include/micro_proj_rates.h"
 
 void update_json(nlohmann::json& final) {
 	const auto now = std::chrono::system_clock::now();
@@ -34,6 +34,6 @@ int main() {
         return final.dump(4);
         });
 
-    app.port(18080).multithreaded().run();
+    app.port(80).multithreaded().run();
 	return 0;
 }

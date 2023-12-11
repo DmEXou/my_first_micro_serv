@@ -25,12 +25,16 @@ nlohmann::json Exchange_rates::json_exchange_rates(const std::vector<std::string
 
             result.push_back(arr_jvaluta);
         }
+
+	
         for (auto& valuta : result) {
-            converter::UTF8_to_unicode conv;
+            //converter::UTF8_to_unicode conv;
             auto& str_jname = valuta.find("Name").value();
-            conv.conv_to(str_jname.template get<std::string>());
-            str_jname = conv.get_wstr();
+	    str_jname = "\xD0\x94";
+	    //conv.conv_to(str_jname.template get<std::string>());
+            //str_jname = conv.get_wstr();
         }
+	
     }
     return result;
 }
