@@ -5,6 +5,7 @@
 
 #include "Include/micro_parser_tuva_energo.h"
 #include "Include/micro_proj_rates.h"
+#include "include/micro_bc_game.h"
 
 void update_json(nlohmann::json& final) {
 	const auto now = std::chrono::system_clock::now();
@@ -14,7 +15,10 @@ void update_json(nlohmann::json& final) {
 	final["Time update"] = upd_time;
 	final["energy"] = json_energy::build();
 	Exchange_rates er;
-	final["rates"] = er.json_exchange_rates({"USD", "EUR"});
+	final["rates"] = er.json_exchange_rates({"USD", "EUR", "CNY"});
+	Bc_rates bc;
+	//auto a = bc.json_bc_rates();
+	final["bc_game"] = bc.json_bc_rates();
 }
 
 int main() {
@@ -34,6 +38,6 @@ int main() {
         return final.dump(4);
         });
 
-    app.port(18080).multithreaded().run();
+    app.port(80).multithreaded().run();
 	return 0;
 }
