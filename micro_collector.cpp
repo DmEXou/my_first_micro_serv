@@ -3,14 +3,9 @@
 
 #include <crow.h>
 
-//<<<<<<< HEAD
 #include "include/micro_parser_tuva_energo.h"
 #include "include/micro_proj_rates.h"
-//=======
-//#include "Include/micro_parser_tuva_energo.h"
-//#include "Include/micro_proj_rates.h"
 #include "include/micro_bc_game.h"
-//>>>>>>> f5b6190c53107f8c8908986d782bdef75cc41658
 
 void update_json(nlohmann::json& final) {
 	const auto now = std::chrono::system_clock::now();
@@ -22,7 +17,6 @@ void update_json(nlohmann::json& final) {
 	Exchange_rates er;
 	final["rates"] = er.json_exchange_rates({"USD", "EUR", "CNY"});
 	Bc_rates bc;
-	//auto a = bc.json_bc_rates();
 	final["bc_game"] = bc.json_bc_rates();
 }
 
