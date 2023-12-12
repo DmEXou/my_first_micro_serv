@@ -3,14 +3,14 @@
 
 #include <crow.h>
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 #include "include/micro_parser_tuva_energo.h"
 #include "include/micro_proj_rates.h"
-=======
-#include "Include/micro_parser_tuva_energo.h"
-#include "Include/micro_proj_rates.h"
+//=======
+//#include "Include/micro_parser_tuva_energo.h"
+//#include "Include/micro_proj_rates.h"
 #include "include/micro_bc_game.h"
->>>>>>> f5b6190c53107f8c8908986d782bdef75cc41658
+//>>>>>>> f5b6190c53107f8c8908986d782bdef75cc41658
 
 void update_json(nlohmann::json& final) {
 	const auto now = std::chrono::system_clock::now();
