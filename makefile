@@ -14,4 +14,4 @@ micro_bc_game.o: include/micro_bc_game.cpp include/micro_bc_game.h
 	clang++ -c include/micro_bc_game.cpp
 
 clean:
-	rm micro_parser_tuva_energo.o micro_proj_rates.o my_utf8_to_unicode_converter.o micro_bc_game.o
+	rm -rf micro_parser_tuva_energo.o micro_proj_rates.o my_utf8_to_unicode_converter.o micro_bc_game.o
