@@ -52,10 +52,10 @@ namespace json_energy {
 
         bool Get_check();
 
-        std::set<std::wstring> Get_result();
+        std::set<int> Get_result();
 
     private:
-        std::set<std::wstring> result;
+        std::set<int> result;
     };
 
     nlohmann::json build();

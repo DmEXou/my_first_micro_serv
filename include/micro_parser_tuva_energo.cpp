@@ -119,19 +119,19 @@ Search_off::Search_off(const std::string& str) {
     conv.conv_to(str);
     auto wstr = conv.get_wstr();
 
-    if (wstr.find(L"р-н Сут-Хольский, с Суг-Аксы") != std::string::npos) result.insert(L"р-н Сут-Хольский, с Суг-Аксы");
-    if (wstr.find(L"р-н Чаа-Хольский, с Чаа-Холь, м Казанак") != std::string::npos) result.insert(L"р-н Чаа-Хольский, с Чаа-Холь, м Казанак");
-    if (wstr.find(L"р-н Дзун-Хемчикский, г Чадан") != std::string::npos) result.insert(L"р-н Дзун-Хемчикский, г Чадан");
-    if (wstr.find(L"Бажин-Алаак") != std::string::npos) result.insert(L"Бажин-Алаак");
-    if (wstr.find(L"Арыг-Узю") != std::string::npos) result.insert(L"Арыг-Узю");
-    if (wstr.find(L"Шагонар") != std::string::npos) result.insert(L"Шагонар");
+    if (wstr.find(L"р-н Сут-Хольский, с Суг-Аксы") != std::string::npos) result.insert(401);
+    if (wstr.find(L"р-н Чаа-Хольский, с Чаа-Холь, м Казанак") != std::string::npos) result.insert(201);
+    if (wstr.find(L"р-н Дзун-Хемчикский, г Чадан") != std::string::npos) result.insert(301);
+    if (wstr.find(L"Бажин-Алаак") != std::string::npos) result.insert(302);
+    if (wstr.find(L"Арыг-Узю") != std::string::npos) result.insert(102);
+    if (wstr.find(L"Шагонар") != std::string::npos) result.insert(101);
 }
 
 bool Search_off::Get_check() {
     return !result.empty();
 }
 
-std::set<std::wstring> Search_off::Get_result() {
+std::set<int> Search_off::Get_result() {
     return result;
 }
 
@@ -141,7 +141,7 @@ nlohmann::json json_energy::build() {
     auto str_dates = h.out_str(adress, 1625);
     Date_Parser d(str_dates);
 
-    std::map<std::string, std::set<std::wstring>> date_name_off_ener;
+    std::map<std::string, std::set<int>> date_name_off_ener;
     adress = "http://www.tuvaenergo.ru/clients/offlist_p/pof.php?dt=";
     std::vector<std::future<std::string>> future_bufer;
     std::vector<std::string> date;
