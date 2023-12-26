@@ -21,15 +21,15 @@ void update_json(nlohmann::json& final) {
 }
 
 int main() {
-	nlohmann::json final;
-	update_json(final);
+    nlohmann::json final;
+    update_json(final);
     crow::SimpleApp app;
-	std::chrono::time_point<std::chrono::steady_clock> old_t_point = std::chrono::steady_clock::now();
+    std::chrono::time_point<std::chrono::steady_clock> old_t_point = std::chrono::steady_clock::now();
 
     CROW_ROUTE(app, "/")([&final, &old_t_point]() {
 		std::chrono::time_point<std::chrono::steady_clock> new_t_point = std::chrono::steady_clock::now();
 
-		if (std::chrono::duration_cast<std::chrono::hours>(new_t_point - old_t_point) >= std::chrono::hours(3)) {
+		if (std::chrono::duration_cast<std::chrono::hours>(new_t_point - old_t_point) >= std::chrono::minutes(2)) {
 			update_json(final);
 			old_t_point = std::chrono::steady_clock::now();
 		}
@@ -38,5 +38,5 @@ int main() {
         });
 
     app.port(80).multithreaded().run();
-	return 0;
+    return 0;
 }
