@@ -6,7 +6,6 @@ nlohmann::json Bc_rates::json_bc_rates() {
     CURL* curl;
     CURLcode res_inter;
     curl = curl_easy_init();
-
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, "https://www.blockchain.com/ru/ticker");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
