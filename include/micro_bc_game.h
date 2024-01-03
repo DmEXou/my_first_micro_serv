@@ -1,8 +1,9 @@
 #pragma once
-#include <string>
 
 #include <nlohmann/json.hpp>
 #include <curl/curl.h>
+
+#include "include/buffer_check.h"
 
 class Bc_rates {
 public:

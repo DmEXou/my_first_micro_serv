@@ -14,8 +14,20 @@ nlohmann::json Bc_rates::json_bc_rates() {
         res_inter = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
     }
-
-    auto json_full = nlohmann::json::parse(readBuffer_UTF8);
+    buffer_check check;
+    nlohmann::json json_full;
+    if (check.check(readBuffer_UTF8)) {
+        try {
+            json_full = nlohmann::json::parse(readBuffer_UTF8);
+        }
+        catch (std::exception& e) {
+            std::cout << "micro_bc_game.cpp json-parse-error\n" << e.what();
+        }
+    }
+    else {
+        std::cout << "<<Castom error>> - micro_bc_game.cpp The Buffer does not contain json or there are errors in it.\n";
+        return nlohmann::json::parse("{}");
+    }
     auto it = json_full.find("RUB");
     nlohmann::json result;
     if (it != json_full.end()) {

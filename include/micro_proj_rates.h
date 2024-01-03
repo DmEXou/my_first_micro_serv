@@ -1,8 +1,9 @@
 #pragma once
-#include <string>
 #include <vector>
 
 #include "include/my_utf8_to_unicode_converter.h"
+#include "include/buffer_check.h"
+
 #include <nlohmann/json.hpp>
 #include <curl/curl.h>
 
