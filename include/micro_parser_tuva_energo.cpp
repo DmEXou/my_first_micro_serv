@@ -147,7 +147,7 @@ nlohmann::json json_energy::build() {
     std::vector<std::string> date;
     for (const auto& pair : d.get_base()) {
         std::string tmp_adress = adress + pair.second;
-        future_bufer.push_back(std::async(&HTML_reader::out_str, &h, tmp_adress, 1626));
+        future_bufer.push_back(std::async(&HTML_reader::out_str, &h, tmp_adress, 1639));
         date.push_back(to_str(pair.first));
     }
     for (int i = 0; i < future_bufer.size(); ++i) {
