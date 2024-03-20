@@ -138,7 +138,7 @@ std::set<int> Search_off::Get_result() {
 nlohmann::json json_energy::build() {
     json_energy::HTML_reader h;
     std::string adress = "http://www.tuvaenergo.ru/clients/offlist_p/index.php";
-    auto str_dates = h.out_str(adress, 1625);
+    auto str_dates = h.out_str(adress, 1638);
     Date_Parser d(str_dates);
 
     std::map<std::string, std::set<int>> date_name_off_ener;
