@@ -3,8 +3,9 @@
 #include "micro_parser_tuva_energo.h"
 
 using namespace json_energy;
+using namespace std::literals;
 
-std::string HTML_reader::out_str(const std::string& adres, const int line_n) {
+std::string HTML_reader::out_str(const int val_cho, const std::string& adres, const int line_n) {
     std::string readBuffer_UTF8; // Достаточно стека.
     readBuffer_UTF8.reserve(82000);
     CURL* curl;
@@ -24,10 +25,28 @@ std::string HTML_reader::out_str(const std::string& adres, const int line_n) {
     if (res_inter != 0) {
         return "";
     }
-    
-    for (size_t i = 0; i < (size_t)line_n - 1; ++i) {
+
+    for (size_t i = 0; i < (size_t)line_n - 51; ++i) {
         readBuffer_UTF8.erase(0, readBuffer_UTF8.find('\n') + 1);
     }
+
+    for (size_t i = 0; i < (size_t)100; ++i) {
+        std::string str_tmp = readBuffer_UTF8.substr(0, readBuffer_UTF8.find('\n'));
+        if (val_cho == 1) {
+            if (str_tmp.find("<p><a href=") == std::string::npos) {
+                readBuffer_UTF8.erase(0, readBuffer_UTF8.find('\n') + 1);
+            }
+            else break;
+        }
+        else {
+            if (str_tmp.find("<tr><th bgcolor=") == std::string::npos) {
+                readBuffer_UTF8.erase(0, readBuffer_UTF8.find('\n') + 1);
+            }
+            else break;
+        }
+
+    }
+
     auto result = readBuffer_UTF8.substr(0, readBuffer_UTF8.find('\n'));
     return result;
 }
@@ -138,7 +157,7 @@ std::set<int> Search_off::Get_result() {
 nlohmann::json json_energy::build() {
     json_energy::HTML_reader h;
     std::string adress = "http://www.tuvaenergo.ru/clients/offlist_p/index.php";
-    auto str_dates = h.out_str(adress, 1638);
+    auto str_dates = h.out_str(1, adress, 1638);
     Date_Parser d(str_dates);
 
     std::map<std::string, std::set<int>> date_name_off_ener;
@@ -147,7 +166,7 @@ nlohmann::json json_energy::build() {
     std::vector<std::string> date;
     for (const auto& pair : d.get_base()) {
         std::string tmp_adress = adress + pair.second;
-        future_bufer.push_back(std::async(&HTML_reader::out_str, &h, tmp_adress, 1639));
+        future_bufer.push_back(std::async(&HTML_reader::out_str, &h, 2, tmp_adress, 1639));
         date.push_back(to_str(pair.first));
     }
     for (int i = 0; i < future_bufer.size(); ++i) {

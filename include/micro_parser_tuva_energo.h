@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <future>
 #include <iostream>
 #include <map>
@@ -23,7 +24,7 @@ namespace json_energy {
 
     class HTML_reader {
     public:
-        std::string out_str(const std::string& adres, const int line_n);
+        std::string out_str(const int val_cho, const std::string& adres, const int line_n);
     private:
         static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
             ((std::string*)userp)->append((char*)contents, size * nmemb);
