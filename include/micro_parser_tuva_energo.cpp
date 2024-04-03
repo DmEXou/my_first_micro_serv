@@ -143,7 +143,22 @@ Search_off::Search_off(const std::string& str) {
     if (wstr.find(L"р-н Дзун-Хемчикский, г Чадан") != std::string::npos) result.insert(301);
     if (wstr.find(L"Бажин-Алаак") != std::string::npos) result.insert(302);
     if (wstr.find(L"Арыг-Узю") != std::string::npos) result.insert(102);
-    if (wstr.find(L"Шагонар") != std::string::npos) result.insert(101);
+    //if(wstr.find(L"Шагонар ") != std::string::npos) result.insert(101);
+    for(size_t i = 0; i < 20; ++i) {
+    	if (wstr.find(L"Шагонар") != std::string::npos) {
+	    size_t pos = wstr.find(L"Шагонар") + 7;
+	    if(wstr.size() < pos) break;
+            if(wstr[pos] == L'с'){
+	        wstr.erase(0, pos);
+    	        continue;	    
+	    }
+	    else {
+	    	result.insert(101);
+		break;
+	    }
+    	}
+	else break;
+    }
 }
 
 bool Search_off::Get_check() {
@@ -181,7 +196,8 @@ nlohmann::json json_energy::build() {
         }
     }
     nlohmann::json finish_json;
-    finish_json["tuva_energo"] = date_name_off_ener;
+    if(!date_name_off_ener.empty()) finish_json["tuva_energo"] = date_name_off_ener;
+    else finish_json["tuva_energo"] = "1404";
     return finish_json;
 }
 
