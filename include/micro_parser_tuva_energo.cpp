@@ -141,7 +141,7 @@ Search_off::Search_off(const std::string& str) {
     if (wstr.find(L"р-н Сут-Хольский, с Суг-Аксы") != std::string::npos) result.insert(401);
     if (wstr.find(L"р-н Чаа-Хольский, с Чаа-Холь, м Казанак") != std::string::npos) result.insert(201);
     if (wstr.find(L"р-н Дзун-Хемчикский, г Чадан") != std::string::npos) result.insert(301);
-    if (wstr.find(L"Бажин-Алаак") != std::string::npos) result.insert(302);
+    if (wstr.find(L"р-н Дзун-Хемчикский, с Бажын-Алаак, ул Амаа Монгуш") != std::string::npos) result.insert(302);
     if (wstr.find(L"Арыг-Узю") != std::string::npos) result.insert(102);
     //if(wstr.find(L"Шагонар ") != std::string::npos) result.insert(101);
     for(size_t i = 0; i < 20; ++i) {
